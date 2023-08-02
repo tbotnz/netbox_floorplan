@@ -1,4 +1,4 @@
-name: flake8 Lint
+name: tests
 
 on: [push, pull_request]
 
