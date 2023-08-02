@@ -1,5 +1,7 @@
 # netbox floorplan
 
+<img src="https://github.com/tbotnz/netbox_floorplan/workflows/lint/badge.svg" alt="Tests"/>
+
 #### summary
 A netbox plugin providing floorplan mapping capability for locations and sites
 
