@@ -1,0 +1,5 @@
+.vscode/
+.vscode/settings.json
+.idea
+*.pyc
+venv
