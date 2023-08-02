@@ -2,6 +2,9 @@
 
 <img src="https://github.com/tbotnz/netbox_floorplan/workflows/tests/badge.svg" alt="Tests"/>
 
+#### demo
+![demo](/media/demo.gif)
+
 #### summary
 A netbox plugin providing floorplan mapping capability for locations and sites
 
@@ -13,6 +16,3 @@ A netbox plugin providing floorplan mapping capability for locations and sites
 
 #### installing
 Install the package, apply migrations then add the plugin to ```PLUGINS = ["netbox_floorplan"]``` in ```/opt/netbox/netbox/netbox/configuration.py:```
-
-#### demo
-![demo](/media/demo.gif)
