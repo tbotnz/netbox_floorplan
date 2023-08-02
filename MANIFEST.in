@@ -1,0 +1,3 @@
+include README.md
+recursive-include netbox_floorplan/templates *
+recursive-include netbox_floorplan/static *
