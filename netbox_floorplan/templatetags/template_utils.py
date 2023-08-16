@@ -5,7 +5,7 @@ register = template.Library()
 
 @register.simple_tag()
 def denormalize_measurement(unit, value):
-    print(unit, value)
+    # print(unit, value)
 
     if unit == 'ft':
         return round(
