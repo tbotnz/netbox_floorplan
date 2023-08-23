@@ -29,20 +29,7 @@
 
 {% block content-wrapper %}
 {% load template_utils %}
-<style>
-    #drag_zone {
-        box-sizing: content-box;
-    }
 
-    .drag {
-        z-index: 999;
-    }
-
-
-    #drag-container {
-        padding-right: 1rem
-    }
-</style>
 
 <!--- start js vars -->
 <input type="hidden" id="obj_pk" value="{{ obj.pk }}">
@@ -190,8 +177,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="control_unit_modal" tabindex="-1" aria-labelledby="control_unit_modal_label"
-    aria-hidden="true">
+<div class="modal fade" id="control_unit_modal" tabindex="-1" aria-labelledby="control_unit_modal_label" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -230,6 +216,6 @@
     </div>
 </div>
 
-<script type="module" src="{% static 'netbox_floorplan/floorplan/edit.js' %}">
+<script type="module" src="{% static 'netbox_floorplan/floorplan/edit.js' %}"></script>
 
 {% endblock content-wrapper %}
