@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: netbox-floorplan
+Version: 0.1.1
+Summary: Netbox Plugin to support graphical floorplans
+Home-page: https://github.com/tbotnz/netbox_floorplan.git
+Author: Tony Nealon
+Author-email: tony@worksystems.co.nz
+License: LGPLv3+
+Platform: UNKNOWN
+License-File: LICENSE
+
+UNKNOWN
+
