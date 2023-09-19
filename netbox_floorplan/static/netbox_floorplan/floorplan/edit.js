@@ -160,7 +160,6 @@ function add_area() {
             "object_type": "area",
         },
     });
-    console.log(wall)
     var group = new fabric.Group([wall]);
 
     group.setControlsVisibility({
@@ -186,7 +185,6 @@ window.add_area = add_area;
 */
 function lock_floorplan_object() {
     var object = canvas.getActiveObject();
-    console.log(object)
     if (object) {
         if (object.lockMovementX) {
             object.set({
