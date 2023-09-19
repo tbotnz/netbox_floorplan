@@ -20,7 +20,7 @@ class FloorplanRackTable(NetBoxTable):
     name = tables.LinkColumn()
 
     actions = tables.TemplateColumn(template_code="""
-    <a type="button" class="btn btn-sm btn-outline-info" onclick="add_floorplan_object(300, 500, 60, 91, '#ea8fe', 30, '{{ record.id }}', '{{ record.name }}', 'rack', '{{ record.status }}')">Add Rack
+    <a type="button" class="btn btn-sm btn-outline-info" onclick="add_floorplan_object(300, 500, '{{ record.outer_width }}', '{{ record.outer_depth}}', '{{ record.outer_unit }}', '#ea8fe', 30, '{{ record.id }}', '{{ record.name }}', 'rack', '{{ record.status }}')">Add Rack
     </a>
     """)
 
@@ -38,7 +38,7 @@ class FloorplanDeviceTable(NetBoxTable):
     name = tables.LinkColumn()
 
     actions = tables.TemplateColumn(template_code="""
-    <a type="button" class="btn btn-sm btn-outline-info" onclick="add_floorplan_object(30, 50, 60, 91, '#ea8fe', 30, '{{ record.id }}', '{{ record.name }}', 'device', '{{ record.status }}')">Add Device
+    <a type="button" class="btn btn-sm btn-outline-info" onclick="add_floorplan_object(30, 50, 60, 91, '{{ record.outer_unit }}', '#ea8fe', 30, '{{ record.id }}', '{{ record.name }}', 'device', '{{ record.status }}')">Add Device
     </a>
     """)
 

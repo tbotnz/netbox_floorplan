@@ -3,3 +3,5 @@
 .idea
 *.pyc
 venv
+build/**
+netbox_floorplan.egg-info/**
