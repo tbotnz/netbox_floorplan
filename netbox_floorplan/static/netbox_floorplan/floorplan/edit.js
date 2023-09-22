@@ -114,6 +114,9 @@ function add_wall() {
         maxHeight: canvasHeight,
         centeredRotation: true,
         angle: 90,
+        custom_meta: {
+            "object_type": "wall",
+        },
     });
 
     var group = new fabric.Group([wall]);
@@ -153,8 +156,10 @@ function add_area() {
         maxHeight: canvasHeight,
         centeredRotation: true,
         angle: 90,
+        custom_meta: {
+            "object_type": "area",
+        },
     });
-
     var group = new fabric.Group([wall]);
 
     group.setControlsVisibility({
@@ -171,6 +176,58 @@ function add_area() {
     canvas.centerObject(group);
 }
 window.add_area = add_area;
+
+/*
+*  lock_floorplan_object: Toggle function to enable/disable movement and resize of objects
+*  Uses object.custom_meta.object_type to determine which controls to enable/disable
+*  for walls/area, mtr, mt, mb, ml, mr and movement/rotation are all enabled/disabled.
+*  for racks, only mtr and movement/roatation are enabled/disabled.
+*/
+function lock_floorplan_object() {
+    var object = canvas.getActiveObject();
+    if (object) {
+        if (object.lockMovementX) {
+            object.set({
+                'lockMovementX': false,
+                'lockMovementY': false,
+                'lockRotation': false
+            });
+            object.setControlsVisibility({
+                mtr: true,
+            });
+            if ( object._objects[0].custom_meta.object_type === "wall" ||
+            object._objects[0].custom_meta.object_type === "area" ) {
+                object.setControlsVisibility({
+                    mt: true,
+                    mb: true,
+                    ml: true,
+                    mr: true,
+                });
+            };
+        } else {
+            object.set({
+                'lockMovementX': true,
+                'lockMovementY': true,
+                'lockRotation': true
+            });
+            object.setControlsVisibility({
+                mtr: false,
+            });
+            if ( object._objects[0].custom_meta.object_type === "wall" ||
+                object._objects[0].custom_meta.object_type === "area" ) {
+                object.setControlsVisibility({
+                    mt: false,
+                    mb: false,
+                    ml: false,
+                    mr: false,
+                });
+            };
+        };
+    };
+    canvas.renderAll();
+    return;
+}
+window.lock_floorplan_object = lock_floorplan_object;
 
 function bring_forward() {
     var object = canvas.getActiveObject();
