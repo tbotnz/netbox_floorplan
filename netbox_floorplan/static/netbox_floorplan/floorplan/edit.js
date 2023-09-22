@@ -209,14 +209,37 @@ function add_text() {
 }
 window.add_text = add_text;
 
-function add_floorplan_object(top, left, width, height, fill, rotation, object_id, object_name, object_type, status) {
+function add_floorplan_object(top, left, width, height, unit, fill, rotation, object_id, object_name, object_type, status) {
+    var object_width;
+    var object_height;
+    if ( !width || !height || !unit ){
+        object_width = 60;
+        object_height = 91;
+    } else {
+        var conversion_scale = 100;
+        console.log("width: " + width)
+        console.log("unit: " + unit)
+        console.log("height: " + height)
+        if (unit == "in") {
+            var new_width = (width * 0.0254) * conversion_scale;
+            var new_height = (height * 0.0254) * conversion_scale;
+        } else {
+            var new_width = (width / 1000) * conversion_scale;
+            var new_height = (height / 1000) * conversion_scale;
+        }
+    
+        object_width = parseFloat(new_width.toFixed(2));
+        console.log(object_width)
+        object_height = parseFloat(new_height.toFixed(2));
+        console.log(object_height)
+    }
     document.getElementById(`object_${object_type}_${object_id}`).remove();
     var rect = new fabric.Rect({
         top: top,
         name: "rectangle",
         left: left,
-        width: width,
-        height: height,
+        width: object_width,
+        height: object_height,
         fill: fill,
         opacity: 0.8,
         lockRotation: false,
@@ -296,6 +319,7 @@ function add_floorplan_object(top, left, width, height, fill, rotation, object_i
 
     canvas.add(group);
     canvas.centerObject(group);
+    //canvas.bringToFront(group);
 }
 window.add_floorplan_object = add_floorplan_object;
 
