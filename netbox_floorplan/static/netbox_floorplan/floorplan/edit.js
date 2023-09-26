@@ -114,6 +114,9 @@ function add_wall() {
         maxHeight: canvasHeight,
         centeredRotation: true,
         angle: 90,
+        custom_meta: {
+            "object_type": "wall",
+        },
     });
 
     var group = new fabric.Group([wall]);
@@ -153,8 +156,10 @@ function add_area() {
         maxHeight: canvasHeight,
         centeredRotation: true,
         angle: 90,
+        custom_meta: {
+            "object_type": "area",
+        },
     });
-
     var group = new fabric.Group([wall]);
 
     group.setControlsVisibility({
@@ -171,6 +176,58 @@ function add_area() {
     canvas.centerObject(group);
 }
 window.add_area = add_area;
+
+/*
+*  lock_floorplan_object: Toggle function to enable/disable movement and resize of objects
+*  Uses object.custom_meta.object_type to determine which controls to enable/disable
+*  for walls/area, mtr, mt, mb, ml, mr and movement/rotation are all enabled/disabled.
+*  for racks, only mtr and movement/roatation are enabled/disabled.
+*/
+function lock_floorplan_object() {
+    var object = canvas.getActiveObject();
+    if (object) {
+        if (object.lockMovementX) {
+            object.set({
+                'lockMovementX': false,
+                'lockMovementY': false,
+                'lockRotation': false
+            });
+            object.setControlsVisibility({
+                mtr: true,
+            });
+            if ( object._objects[0].custom_meta.object_type === "wall" ||
+            object._objects[0].custom_meta.object_type === "area" ) {
+                object.setControlsVisibility({
+                    mt: true,
+                    mb: true,
+                    ml: true,
+                    mr: true,
+                });
+            };
+        } else {
+            object.set({
+                'lockMovementX': true,
+                'lockMovementY': true,
+                'lockRotation': true
+            });
+            object.setControlsVisibility({
+                mtr: false,
+            });
+            if ( object._objects[0].custom_meta.object_type === "wall" ||
+                object._objects[0].custom_meta.object_type === "area" ) {
+                object.setControlsVisibility({
+                    mt: false,
+                    mb: false,
+                    ml: false,
+                    mr: false,
+                });
+            };
+        };
+    };
+    canvas.renderAll();
+    return;
+}
+window.lock_floorplan_object = lock_floorplan_object;
 
 function bring_forward() {
     var object = canvas.getActiveObject();
@@ -209,14 +266,37 @@ function add_text() {
 }
 window.add_text = add_text;
 
-function add_floorplan_object(top, left, width, height, fill, rotation, object_id, object_name, object_type, status) {
+function add_floorplan_object(top, left, width, height, unit, fill, rotation, object_id, object_name, object_type, status) {
+    var object_width;
+    var object_height;
+    if ( !width || !height || !unit ){
+        object_width = 60;
+        object_height = 91;
+    } else {
+        var conversion_scale = 100;
+        console.log("width: " + width)
+        console.log("unit: " + unit)
+        console.log("height: " + height)
+        if (unit == "in") {
+            var new_width = (width * 0.0254) * conversion_scale;
+            var new_height = (height * 0.0254) * conversion_scale;
+        } else {
+            var new_width = (width / 1000) * conversion_scale;
+            var new_height = (height / 1000) * conversion_scale;
+        }
+    
+        object_width = parseFloat(new_width.toFixed(2));
+        console.log(object_width)
+        object_height = parseFloat(new_height.toFixed(2));
+        console.log(object_height)
+    }
     document.getElementById(`object_${object_type}_${object_id}`).remove();
     var rect = new fabric.Rect({
         top: top,
         name: "rectangle",
         left: left,
-        width: width,
-        height: height,
+        width: object_width,
+        height: object_height,
         fill: fill,
         opacity: 0.8,
         lockRotation: false,
@@ -296,6 +376,7 @@ function add_floorplan_object(top, left, width, height, fill, rotation, object_i
 
     canvas.add(group);
     canvas.centerObject(group);
+    //canvas.bringToFront(group);
 }
 window.add_floorplan_object = add_floorplan_object;
 
