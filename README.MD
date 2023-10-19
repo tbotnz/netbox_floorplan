@@ -15,8 +15,9 @@ A netbox plugin providing floorplan mapping capability for locations and sites
 - export to svg
 
 #### installing
-Install the package, apply migrations, then add the plugin to ```PLUGINS = ["netbox_floorplan"]``` in ```/opt/netbox/netbox/netbox/configuration.py:``` then collectstatic
-
+Please follow the plugin installation documentation provided by Netbox. Note that the order of these steps is important!
+https://docs.netbox.dev/en/stable/plugins/#installing-plugins
 
 #### mentions
 Special thanks to Ziply Fiber network automation team for helping originally helping to conceive this during the NANOG hackathon
+
