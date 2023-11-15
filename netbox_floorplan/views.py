@@ -17,7 +17,7 @@ class FloorplanSiteTabView(generic.ObjectView):
     tab = ViewTab(
         label='Floor Plan',
         hide_if_empty=False,
-        permission="netbox_floorplan.view_floorplanobject",
+        permission="netbox_floorplan.view_floorplan",
     )
     template_name = "netbox_floorplan/floorplan_view.html"
 
@@ -38,7 +38,7 @@ class FloorplanLocationTabView(generic.ObjectView):
     tab = ViewTab(
         label="Floor Plan",
         hide_if_empty=False,
-        permission="netbox_floorplan.view_floorplanobject",
+        permission="netbox_floorplan.view_floorplan",
     )
     template_name = "netbox_floorplan/floorplan_view.html"
 
