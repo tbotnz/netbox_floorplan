@@ -58,7 +58,7 @@ class FloorplanListView(generic.ObjectListView):
 
 
 class FloorplanAddView(PermissionRequiredMixin, View):
-    permission_required = "netbox_floorplan.add_floorplanobject"
+    permission_required = "netbox_floorplan.add_floorplan"
 
     def get(self, request):
         if request.GET.get("site"):
@@ -79,7 +79,7 @@ class FloorplanDeleteView(generic.ObjectDeleteView):
 
 
 class FloorplanMapEditView(LoginRequiredMixin, View):
-    permission_required = "netbox_floorplan.edit_floorplanobject"
+    permission_required = "netbox_floorplan.edit_floorplan"
 
     def get(self, request, pk):
         fp = models.Floorplan.objects.get(pk=pk)
