@@ -5,7 +5,7 @@ class FloorplanConfig(PluginConfig):
     name = "netbox_floorplan"
     verbose_name = "Netbox Floorplan"
     description = ""
-    version = "0.1.1"
+    version = "0.4"
     base_url = "floorplan"
     min_version = "3.4.1"
 

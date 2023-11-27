@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name="netbox_floorplan",
-    version="0.1.1",
+    version="0.4",
     author="Tony Nealon",
     author_email="tony@worksystems.co.nz",
     description="Netbox Plugin to support graphical floorplans",
